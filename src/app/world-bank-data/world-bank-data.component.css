@@ -1,0 +1,153 @@
+/* Structure */
+table {
+    width: 100%;
+  }
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+mat-form-field{
+  width: 100%;
+}
+/* .mat-table{
+  max-width: 100%;
+  overflow-y: auto;
+} */
+.mat-cell {
+  padding: 40px;
+}
+.mat-column{
+  padding-right: 50px !important;
+}
+.mid-line{
+  color: rgb(246, 246, 246);
+  position: absolute;
+  display: flex;
+  left: 32%;
+  top: 9%;
+}
+.mat-ripple { 
+  flex-grow: 0 !important; 
+
+}
+.mat-header-row {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1;
+  } 
+::-webkit-scrollbar{
+    height: 5px;
+    width: 5px;
+    background: rgb(235, 235, 235);
+}
+::-webkit-scrollbar-thumb:vertical{
+    background: #afafaf;
+    border-radius: 10px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 4%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+mat-spinner {
+  margin-right: 10px;
+}
+
+.overlayloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.loader {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 40px;
+}
+
+.dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: white;
+  animation: loader-animation 1.5s infinite;
+}
+
+.dot:nth-child(1) {
+  left: 0;
+  animation-delay: 0s;
+}
+
+.dot:nth-child(2) {
+  left: 20px;
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  left: 40px;
+  animation-delay: 0.4s;
+}
+
+@keyframes loader-animation {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* .example-container {
+  display: flex;
+  height: 60%; 
+  overflow: hidden;
+}
+
+.example-sidenav {
+  width: 90%;
+  padding: 1%;
+  box-shadow: 4px 6px 9px #ababab33;
+  overflow-y: auto;
+} */
+
+/* Adjust the scrollbar appearance for the drawer content */
+.example-sidenav::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+
+.example-sidenav::-webkit-scrollbar-thumb:vertical {
+  background-color: #ff9900 !important;
+  border-radius: 5px;
+}
+
+.example-sidenav::-webkit-scrollbar-track {
+  background-color: #f2f2f2;
+}

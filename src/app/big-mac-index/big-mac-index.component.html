@@ -1,0 +1,130 @@
+      <div class="container" style="margin-top: 2%;">
+        <div class="row" style="height: 510px !important;">
+            <div class="col-md-8 mat-table" style="height: 100%;">
+              <!-- table section starts -->
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="date" >
+                      <th mat-header-cell *matHeaderCellDef style="padding-right: 80px;">Date </th>
+                      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+                    </ng-container>
+                  
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="local_price">
+                      <th mat-header-cell *matHeaderCellDef style="padding-right: 50px;"> Local Rrice</th>
+                      <td mat-cell *matCellDef="let element"> {{element.local_price}} </td>
+                    </ng-container>
+                  
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="dollar_ex">
+                      <th mat-header-cell *matHeaderCellDef style="padding-right: 50px;"> Dollar Ex </th>
+                      <td mat-cell *matCellDef="let element"> {{element.dollar_ex}} </td>
+                    </ng-container>
+                  
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="dollar_price">
+                      <th mat-header-cell *matHeaderCellDef style="padding-right: 50px;"> Dollar Price </th>
+                      <td mat-cell *matCellDef="let element"> {{element.dollar_price}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dollar_ppp">
+                      <th mat-header-cell *matHeaderCellDef style="padding-right: 50px;">Dollar PPP </th>
+                      <td mat-cell *matCellDef="let element"> {{element.dollar_ppp}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dollar_valuation">
+                      <th mat-header-cell *matHeaderCellDef style="padding-right: 50px;">Dollar Valuation </th>
+                      <td mat-cell *matCellDef="let element"> {{element.dollar_valuation}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dollar_adj_valuation">
+                      <th mat-header-cell *matHeaderCellDef style="padding-right: 50px;">Dollar Adj Valuation </th>
+                      <td mat-cell *matCellDef="let element"> {{element.dollar_adj_valuation}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="euro_adj_valuation">
+                      <th mat-header-cell *matHeaderCellDef style="padding-right: 50px;">Euro Adj Valuation </th>
+                      <td mat-cell *matCellDef="let element"> {{element.euro_adj_valuation}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="sterling_adj_valuation">
+                      <th mat-header-cell *matHeaderCellDef style="padding-right: 50px;">Sterling Adj Valuation </th>
+                      <td mat-cell *matCellDef="let element"> {{element.sterling_adj_valuation}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="yen_adj_valuation">
+                      <th mat-header-cell *matHeaderCellDef style="padding-right: 50px;">Yen Adj Valuation </th>
+                      <td mat-cell *matCellDef="let element"> {{element.yen_adj_valuation}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="yuan_adj_valuation">
+                      <th mat-header-cell *matHeaderCellDef style="padding-right: 50px;font-size: 11px;">Yuan Adj Valuation </th>
+                      <td mat-cell *matCellDef="let element"> {{element.yuan_adj_valuation}} </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  
+                    <!-- Row shown when there is no matching data. -->
+                    <tr class="mat-row" *matNoDataRow>
+                      <td class="mat-cell" colspan="4">No data matching for the given date</td>
+                    </tr>
+                  </table>
+                  <!-- table section ends -->
+            </div>
+            <div class="col-md-4">
+              <!-- filter section starts -->
+              <mat-drawer-container class="example-container" autosize style="height: 53%;">
+                <mat-drawer #drawer class="example-sidenav" mode="side" style="width: 90%;">
+                   <div style="padding: 8%;box-shadow: 4px 6px 9px #ababab33"  #sidenav>
+                <h2 style="font-weight: 400;color: rgb(113, 113, 113);">Filter By Date<span class="mid-line">__________________ </span></h2>
+                <mat-form-field>
+                  <mat-label>Choose a date</mat-label>
+                  <input matInput [matDatepicker]="picker" #input>
+                  <mat-datepicker-toggle style="float: right;" matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <div class="example-button-row justify-content-evenly d-flex">
+                  <button mat-raised-button color="primary" [disabled]="!isDateSelected()" (click)="applyFilter()">Apply</button>
+                  <button mat-raised-button (click)="clearDate()">Clear</button>
+                </div>
+              </div>
+            </mat-drawer>
+              <div class="example-sidenav-content">
+                <button mat-icon-button (click)="drawer.toggle()">
+                  <mat-icon>filter_list</mat-icon>
+                </button>
+              </div>
+              </mat-drawer-container>
+              <!-- filter section ends -->
+
+              <!-- description section starts -->
+              <mat-card class="example-card" style="margin-top: 4%;">
+                <mat-card-header>
+                  <mat-card-title style="font-weight: 500;">DESCRIPTION :</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <div class="px-2 py-3" style="text-align: justify;color: gray;">
+                    <p>
+                         The Big Mac index was invented by The Economist in 1986 as a lighthearted guide to whether currencies are at their “correct” level. It is based on the theory of purchasing-power parity (PPP).
+                    </p>
+                  </div>
+                  <mat-divider></mat-divider>
+                </mat-card-content>
+              </mat-card>
+              <!-- description section ends -->
+            </div>
+        </div>
+      </div>
+      <!-- loader starts -->
+      <div class="overlayloader" *ngIf="isFilteredBigMacIndex" >
+        <div class="loader-container">
+          <div class="loader">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+          <p>Please wait, Applying Filter</p>
+        </div>
+      </div>
+     

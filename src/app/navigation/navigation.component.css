@@ -1,0 +1,13 @@
+/* left-navbar.component.css */
+.sidenav-container {
+    height: 100%;
+  }
+  
+  .mat-sidenav {
+    width: 200px;
+    background: #f0f0f0;
+  }
+  
+  .mat-sidenav-content {
+    padding: 20px;
+  }

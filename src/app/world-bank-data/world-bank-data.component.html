@@ -1,0 +1,104 @@
+
+<div class="container" style="margin-top: 2%;">
+    <div class="row" style="height: 540px;">
+        <div class="col-md-8 mat-table" style="height: 100%;">
+          <!-- table section starts -->
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+                <!-- Position Column -->
+                <ng-container matColumnDef="series_id" >
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;padding-left:0px">Series Id </th>
+                  <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.series_id}} </td>
+                </ng-container>
+              
+                <!-- Name Column -->
+                <ng-container matColumnDef="country_code">
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Country Code</th>
+                  <td mat-cell *matCellDef="let element"> {{element.country_code}} </td>
+                </ng-container>
+              
+                <!-- Weight Column -->
+                <ng-container matColumnDef="country_name">
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Country Name</th>
+                  <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.country_name}} </td>
+                </ng-container>
+              
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="year">
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Year</th>
+                  <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="value">
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;padding-left:4%;">Value</th>
+                  <td mat-cell *matCellDef="let element" style="text-align: center;">{{element.value}} </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              
+                <!-- Row shown when there is no matching data. -->
+                <tr class="mat-row" *matNoDataRow>
+                  <td class="mat-cell" colspan="4">No data matching for the given country and series Id</td>
+                </tr>
+              </table>
+              <!-- table section ends -->
+        </div>
+        <div class="col-md-4">
+          <!-- filter section starts -->
+          <mat-drawer-container class="example-container" autosize style="height: 60%;overflow: auto !important;">
+            <mat-drawer #drawer class="example-sidenav" mode="side" style="width: 90%;">
+            <div style="padding: 1%;box-shadow: 4px 6px 9px #ababab33" #sidenav>
+            <h2 style="font-weight: 400;color: rgb(113, 113, 113);">Filter By Country And Series</h2>
+            <mat-form-field appearance="fill">
+                <mat-label>Select Series</mat-label>
+                <mat-select #matSelect (selectionChange)="onOptionSelected($event)">
+                  <mat-option *ngFor="let option of options" [value]="option.sid">{{ option.sid }}</mat-option>
+                </mat-select>
+              </mat-form-field> 
+              <div *ngFor="let item of countryCheckbox">
+                <mat-checkbox #checkboxRef [checked]="item.checked" (change)="checkboxChanged(item)">{{ item.countryName }}</mat-checkbox>
+              </div>
+            <div class="example-button-row justify-content-evenly d-flex py-1">
+              <button mat-raised-button color="primary" [disabled]="isValid()" (click)="applyFilter()">Apply</button>
+              <button mat-raised-button (click)="clearCheckBox()">Clear</button>
+            </div>
+          </div>
+        </mat-drawer>
+          <div class="example-sidenav-content">
+            <button mat-icon-button (click)="drawer.toggle()">
+              <mat-icon>filter_list</mat-icon>
+            </button>
+          </div>
+          </mat-drawer-container>
+          <!-- filter section ends -->
+          <!-- description section starts -->
+          <mat-card class="example-card" style="margin-top: 3%;">
+            <mat-card-header>
+              <mat-card-title style="font-weight: 500;">DESCRIPTION :</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="px-2 py-0" style="text-align: justify;color: gray;margin:0px">
+                <p>
+                     World Bank provides data from hundreds of countries and regions around the world, from multiple categories such as finance, economy, energy, education, health, poverty, agriculture, employment, population, land use, foreign aid, climate change, government expenditures, literacy, mortality, and patents.
+                </p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+          <!-- description secion ends -->
+        </div>
+    </div>
+  </div>
+<!-- loader starts -->
+  <div class="overlayloader" *ngIf="isFilteredWorldIndex">
+    <div class="loader-container">
+      <div class="loader">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+      <p>Please wait, Applying Filter</p>
+    </div>
+  </div>
+  <!-- loader ends -->
+ 

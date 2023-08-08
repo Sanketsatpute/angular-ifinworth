@@ -1,0 +1,10 @@
+{
+    "/api": {
+      "target": "https://data.nasdaq.com",
+      "secure": true,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api": ""
+      }
+    }
+  }
